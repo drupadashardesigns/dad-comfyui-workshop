@@ -1,0 +1,23 @@
+# Development files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Dependencies (if we add any)
+node_modules/
+npm-debug.log*
+
+# Build outputs (if we add any)
+dist/
+build/
