@@ -1879,20 +1879,82 @@ initFaq();
   .h-panel::after{background:rgba(14,12,10,.3)!important}
 }
 
-/* ── Fix 2: Text sizes — reduce h1 and section padding ── */
+/* ── Fix 2: Text sizes — reduce h1, h2, body text and all section padding ── */
 @media(max-width:640px){
-  h1{font-size:clamp(28px,7vw,38px)!important;line-height:1.05!important}
-  .hero-sub{font-size:13px!important}
-  .hero-content{padding:24px 16px 32px!important}
+  /* Typography */
+  h1{font-size:clamp(24px,6.5vw,32px)!important;line-height:1.05!important}
+  h2{font-size:clamp(18px,5vw,24px)!important;line-height:1.1!important}
+  .hero-sub{font-size:12px!important;line-height:1.5!important}
+  .hero-kicker{font-size:9px!important}
+
+  /* Hero content */
+  .hero-content{padding:20px 16px 24px!important}
+  .hero-ctas{margin-bottom:20px!important;gap:12px!important}
+  .cta-primary{padding:11px 24px!important;font-size:13px!important}
+  .hero-meta{gap:6px 0!important;padding-top:14px!important}
+  .hm{margin-right:14px!important}
+  .hml{font-size:8px!important}
+  .hmv{font-size:12px!important}
+
   /* Fix inline min-width on hero sec-node */
-  .hero-content .sec-node{min-width:0!important;display:block!important;width:100%!important}
-  /* Tighten section node body */
-  .sec-node-body{padding:18px 20px 22px!important}
-  /* Smaller h2 headings */
-  h2{font-size:clamp(22px,5.5vw,32px)!important}
-  /* Meta row */
-  .hero-meta{gap:6px 0!important}
-  .hm{margin-right:16px!important}
+  .hero-content .sec-node{min-width:0!important;display:block!important;width:100%!important;margin-bottom:16px!important}
+
+  /* Section node boxes */
+  .sec-node-body{padding:14px 16px 18px!important}
+  .sec-node-header{padding:6px 14px!important}
+  .sec-node-type{font-size:8px!important}
+  .sec-node-id{font-size:8px!important}
+
+  /* Section-level padding — ID selectors need explicit override */
+  #outcomes{padding:28px 0!important}
+  #modules{padding:28px 0!important}
+  #register{padding:28px 0!important}
+  #faq{padding:28px 0!important}
+  .faq-grid-wrap{padding:20px 16px!important}
+
+  /* Sessions */
+  .sess-head{padding:20px 16px 16px!important}
+  .sess-card{padding:20px 16px!important}
+  .sess-title{font-size:15px!important}
+  .sess-num{font-size:48px!important}
+
+  /* Outcomes grid */
+  .out-grid{padding:10px 16px 0!important;gap:10px!important}
+  .out-t{font-size:14px!important}
+  .out-b{font-size:11px!important}
+  .out-card{padding-bottom:16px!important}
+
+  /* Expanded module panels */
+  .exp-input{padding:16px 14px!important}
+  .exp-info{padding:16px 14px!important}
+  .exp-input-type{font-size:14px!important;margin-bottom:8px!important}
+  .exp-input-desc{font-size:12px!important}
+  .exp-bullets li{font-size:12px!important}
+  .exp-img-placeholder{height:80px!important}
+  .exp-col-title{margin-bottom:12px!important}
+
+  /* About section */
+  .about-content{padding:20px 16px!important}
+  .about-content h2{font-size:clamp(18px,5vw,24px)!important}
+  .about-photo{min-height:180px!important}
+
+  /* About body text */
+  .about-content p{font-size:13px!important;line-height:1.65!important;margin-bottom:12px!important}
+  .about-content h2{font-size:clamp(18px,5vw,24px)!important}
+
+  /* Register & FAQ */
+  .reg-l{padding:0!important}
+  .reg-l .reg-sub{font-size:13px!important}
+  .faq-l h2{font-size:clamp(18px,5vw,24px)!important}
+  .faq-q{font-size:13px!important}
+  .faq-a{font-size:12px!important}
+  .form-wrap{padding:0!important}
+
+  /* s-tag labels */
+  .s-tag{font-size:8px!important}
+
+  /* Reduce wire gap between sections */
+  section + section{margin-top:0!important}
 }
 
 /* ── Fix 3: Module containers — keep + toggle inside bounds ── */
