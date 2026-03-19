@@ -1836,6 +1836,96 @@ initFaq();
     margin-top: 50px;
   }
 }
+
+/* ════════════════════════════════════════════
+   MOBILE BUG FIXES
+════════════════════════════════════════════ */
+
+/* ── Fix 1: Hero panels — horizontal strip instead of vertical stack ── */
+@media(max-width:640px){
+  .hero-panels{
+    height:160px!important;
+    min-height:unset!important;
+    display:flex!important;
+    flex-direction:row!important;
+    overflow:hidden!important;
+  }
+  .h-panel{
+    position:relative!important;
+    clip-path:none!important;
+    height:160px!important;
+    flex:1!important;
+    min-width:0!important;
+    top:auto!important;bottom:auto!important;
+    left:auto!important;right:auto!important;
+  }
+  .hp1,.hp2,.hp3,.hp4,.hp5{
+    position:relative!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  /* Always show panel labels on mobile (no hover on touch) */
+  .h-label-inner{
+    opacity:1!important;
+    transform:translateY(0)!important;
+  }
+  .h-mod-name{font-size:9px!important;line-height:1.3!important}
+  .h-mod-tag{font-size:7px!important;margin-bottom:4px!important}
+  .h-mod-hint{display:none!important}
+  .h-num{font-size:9px!important;top:10px!important}
+  /* Lighten dim overlay so content is visible */
+  .h-panel::after{background:rgba(14,12,10,.3)!important}
+}
+
+/* ── Fix 2: Text sizes — reduce h1 and section padding ── */
+@media(max-width:640px){
+  h1{font-size:clamp(28px,7vw,38px)!important;line-height:1.05!important}
+  .hero-sub{font-size:13px!important}
+  .hero-content{padding:24px 16px 32px!important}
+  /* Fix inline min-width on hero sec-node */
+  .hero-content .sec-node{min-width:0!important;display:block!important;width:100%!important}
+  /* Tighten section node body */
+  .sec-node-body{padding:18px 20px 22px!important}
+  /* Smaller h2 headings */
+  h2{font-size:clamp(22px,5.5vw,32px)!important}
+  /* Meta row */
+  .hero-meta{gap:6px 0!important}
+  .hm{margin-right:16px!important}
+}
+
+/* ── Fix 3: Module containers — keep + toggle inside bounds ── */
+@media(max-width:640px){
+  .mod-header{gap:10px!important;padding:14px 14px!important}
+  /* Hide hint text — redundant on mobile, causes overflow */
+  .mod-hint{display:none!important}
+  .mod-tag{width:26px!important;font-size:10px!important}
+  .mod-name{font-size:14px!important}
+  .mod-toggle{width:22px!important;height:22px!important;flex-shrink:0!important}
+  /* Prevent mod-list from adding extra side padding */
+  .mod-list{padding-left:0!important;padding-right:0!important}
+}
+
+/* ── Fix 4: Process chain — remove clipped arrows, enable swipe ── */
+@media(max-width:768px){
+  /* Hide nav arrows — they clip under overflow:hidden and don't work on touch */
+  .process-nav{display:none!important}
+  /* Remove wrapper margin that only existed to give arrows room */
+  .exp-process-wrapper{margin:0!important}
+  /* Clip the section so chain scrolls inside it */
+  .exp-process{padding:20px 16px!important;overflow:hidden!important}
+  /* Horizontal swipe scroll */
+  .process-chain{
+    min-width:unset!important;
+    width:100%!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    padding-bottom:6px!important;
+    padding-right:8px!important;
+  }
+  .pnode{min-width:90px!important;font-size:10px!important}
+}
 </style>
 
 <script>
