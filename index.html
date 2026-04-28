@@ -1324,9 +1324,27 @@ section + section{border-top:1px solid rgba(239,159,39,.06)}
 /* ── MODULE DATA ──────────────────────────── */
 const MODS = [
   {
-    tag:'M1', name:'Exterior perspective generation',
-    input:'Floor Plan or Site Plan',
-    inputDesc:'Hand-drawn, CAD export, or scanned sketch — any stage of design.',
+    tag:'M1', name:'Node orientation & canvas logic',
+    input:'No drawing required',
+    inputDesc:'This module requires nothing from you — just your attention. You will leave knowing exactly what every node does and why.',
+    process:[
+      {label:'Explore',name:'The Canvas'},
+      {label:'Understand',name:'Node Types'},
+      {label:'Learn',name:'Checkpoints'},
+      {label:'Connect',name:'A Simple Chain'},
+      {label:'Output',name:'First Generation'}
+    ],
+    bullets:[
+      'Understand the ComfyUI canvas — nodes, wires, and execution flow',
+      'Learn the difference between checkpoints, ControlNet models, and samplers',
+      'Colour-coded breakdown of every node category you will use in the workshop',
+      'Output: your first queued generation — built from scratch, not loaded from a preset'
+    ]
+  },
+  {
+    tag:'M2', name:'Sketch-to-render',
+    input:'Exterior perspective drawing',
+    inputDesc:'Hand-drawn sketch, SketchUp export, or CAD linework — any exterior perspective at any stage of design.',
     process:[
       {label:'Input',name:'Your Drawing'},
       {label:'Extract',name:'Edge Detection'},
@@ -1335,154 +1353,136 @@ const MODS = [
       {label:'Output',name:'Exterior Visual'}
     ],
     bullets:[
-      'Works with any floor plan — hand-drawn, CAD, or scanned',
-      'Control architectural style, lighting, and atmosphere',
-      'Generate multiple exterior directions from one drawing',
-      'Output: photorealistic or illustrated exterior perspective'
+      'ControlNet Canny reads your drawing geometry and locks it into the output',
+      'Control material, lighting, and atmosphere through prompt — not redrawing',
+      'Understand why ControlNet strength and end_percent change what you get',
+      'Output: photorealistic exterior render driven by your own drawing'
     ]
   },
   {
-    tag:'M2', name:'Interior elevation visualisation',
-    input:'Elevation Drawing',
-    inputDesc:'Your interior elevation — section cut or drawn elevation at any scale.',
+    tag:'M3', name:'Batch generation',
+    input:'Any exterior perspective drawing',
+    inputDesc:'The same drawing you used in M2 — or any sketch. One input, multiple outputs.',
     process:[
-      {label:'Input',name:'Your Elevation'},
-      {label:'Read',name:'Wall Structure'},
-      {label:'Apply',name:'Material + Light'},
-      {label:'Generate',name:'AI Render'},
-      {label:'Output',name:'Interior Visual'}
+      {label:'Input',name:'Your Drawing'},
+      {label:'Lock',name:'Geometry'},
+      {label:'Vary',name:'Material or Light'},
+      {label:'Run',name:'Batch Queue'},
+      {label:'Output',name:'Variation Set'}
     ],
     bullets:[
-      'Reads your elevation geometry and respects spatial relationships',
-      'Apply materials, lighting, and furnishing atmosphere',
-      'Produce multiple finish variations from one drawing',
-      'Output: interior render ready for presentation'
+      'Generate material and lighting variations from a single drawing without re-drawing anything',
+      'Run four outputs in a single queue — concrete, brick, glass, timber',
+      'Understand what changes between runs and what stays fixed',
+      'Output: a comparative variation study ready for client or studio review'
     ]
   },
   {
-    tag:'M3', name:'Section perspective rendering',
-    input:'Section Cut Drawing',
-    inputDesc:'Your section — hand-drawn or CAD. Landscape or portrait orientation.',
+    tag:'M4', name:'Style transfer',
+    input:'Your render + a reference photograph',
+    inputDesc:'A render from M2 or M3 as the base, and any photograph — interior, exterior, or atmospheric — as the style reference.',
     process:[
-      {label:'Input',name:'Your Section'},
-      {label:'Detect',name:'Depth + Planes'},
-      {label:'Add',name:'Spatial Atmosphere'},
-      {label:'Generate',name:'AI Render'},
-      {label:'Output',name:'Section Visual'}
+      {label:'Input',name:'Render + Reference'},
+      {label:'Load',name:'IPAdapter'},
+      {label:'Extract',name:'Style Qualities'},
+      {label:'Blend',name:'Controlled Weight'},
+      {label:'Output',name:'Styled Render'}
     ],
     bullets:[
-      'Preserves spatial hierarchy and section relationships',
-      'Adds atmosphere, materiality, and human scale',
-      'Works with architectural sections at any stage',
-      'Output: atmospheric section perspective'
+      'IPAdapter reads mood, palette, and material feel from your reference image',
+      'Your building geometry stays intact — the atmosphere shifts',
+      'Control how much influence the reference has using weight and end_at',
+      'Output: your design rendered in the atmosphere of any reference you choose'
     ]
   },
   {
-    tag:'M3B', name:'Section perspective — advanced',
-    input:'Section Cut Drawing',
-    inputDesc:'Same input as M3 — unlocks finer control over output quality.',
+    tag:'M5', name:'Site insertion & inpainting',
+    input:'Site photograph + your design sketch',
+    inputDesc:'Composite your sketch or SketchUp export onto a site photograph before bringing it into ComfyUI — the combined image is your input.',
     process:[
-      {label:'Input',name:'Your Section'},
-      {label:'Fine-tune',name:'Edge Control'},
-      {label:'Layer',name:'Multi-Style Blend'},
-      {label:'Refine',name:'Guided Render'},
-      {label:'Output',name:'Detailed Section'}
-    ],
-    bullets:[
-      'Advanced ControlNet settings for tighter geometry control',
-      'Blend multiple style references simultaneously',
-      'Higher fidelity output suitable for final presentations',
-      'Output: detailed, presentation-grade section render'
-    ]
-  },
-  {
-    tag:'M4', name:'Material & atmosphere exploration',
-    input:'Reference Image or Drawing',
-    inputDesc:'Any existing image — a render, photograph, or sketch — as starting material.',
-    process:[
-      {label:'Input',name:'Your Reference'},
-      {label:'Extract',name:'Material Qualities'},
-      {label:'Shift',name:'Atmosphere Control'},
-      {label:'Blend',name:'AI Synthesis'},
-      {label:'Output',name:'Material Study'}
-    ],
-    bullets:[
-      'Extract and reapply material qualities from any reference',
-      'Control light quality, time of day, and atmospheric mood',
-      'Produce a range of finish options from one input',
-      'Output: material and atmosphere explorations for design review'
-    ]
-  },
-  {
-    tag:'M5', name:'Site insertion & contextual inpainting',
-    input:'Site Photograph',
-    inputDesc:'A photograph of your actual site — street-level or drone.',
-    process:[
-      {label:'Input',name:'Site Photo'},
-      {label:'Mask',name:'Region Selection'},
-      {label:'Place',name:'Design Into Site'},
+      {label:'Input',name:'Composite Image'},
+      {label:'Draw',name:'Mask Region'},
+      {label:'Inpaint',name:'Design Into Site'},
       {label:'Blend',name:'Context Merge'},
       {label:'Output',name:'Contextual Visual'}
     ],
     bullets:[
-      'Select any region of the site photo for design insertion',
-      'Your building or intervention placed and lit contextually',
-      'Shadows, reflections, and scale handled by the workflow',
-      'Output: your design in its real site context'
+      'Your design placed and rendered within an actual site photograph',
+      'Mask defines exactly which region gets regenerated — everything else is preserved',
+      'VAEEncodeForInpaint handles the boundary — not a crude cut-and-paste',
+      'Output: your intervention in its real site context, ready for presentation'
     ]
   },
   {
-    tag:'M5B', name:'Site insertion — advanced masking',
-    input:'Site Photograph',
-    inputDesc:'Same input as M5 — unlocks precision mask control.',
-    process:[
-      {label:'Input',name:'Site Photo'},
-      {label:'Precision',name:'Mask Refinement'},
-      {label:'Render',name:'Design + Shadow'},
-      {label:'Merge',name:'Deep Context Blend'},
-      {label:'Output',name:'Photorealistic Insert'}
-    ],
-    bullets:[
-      'Precision masking with manual control over insertion boundaries',
-      'Shadow casting and environmental lighting integration',
-      'Multiple iterations with different design placements',
-      'Output: photorealistic site insertion for client presentations'
-    ]
-  },
-  {
-    tag:'M6', name:'Massing & spatial concept generation',
-    input:'Massing Sketch or Model Photo',
-    inputDesc:'A rough sketch, massing diagram, or photograph of a physical model.',
+    tag:'M6', name:'Massing study',
+    input:'Rough massing sketch or physical model photo',
+    inputDesc:'An early-stage massing — hand-drawn, diagrammatic, or a photograph of a physical model. Precision not required.',
     process:[
       {label:'Input',name:'Massing Sketch'},
       {label:'Read',name:'Form + Volume'},
-      {label:'Set',name:'Scale + Context'},
-      {label:'Interpret',name:'AI Render'},
-      {label:'Output',name:'Spatial Concept'}
+      {label:'Set',name:'Context + Scale'},
+      {label:'Generate',name:'Interpreted Render'},
+      {label:'Output',name:'Concept Visual'}
     ],
     bullets:[
-      'Works with the roughest sketches — precision not required',
-      'Establish scale, context, and environmental setting',
-      'Generate multiple architectural interpretations of one massing',
-      'Output: spatial concept visuals for early-stage design decisions'
+      'Feed the roughest early-stage massing into the pipeline — no finished drawing needed',
+      'Establish scale, context, and environmental setting at concept stage',
+      'Explore multiple architectural interpretations of one massing',
+      'Output: spatial concept visuals for early design decisions'
     ]
   },
   {
     tag:'M7', name:'Style & reference cross-manipulation',
-    input:'Multiple Reference Images',
-    inputDesc:'Any combination of images — sketches, renders, photographs, artwork.',
+    input:'Multiple reference images',
+    inputDesc:'Any combination — renders, photographs, artwork, material samples. Two or more sources fed simultaneously into IPAdapter.',
     process:[
       {label:'Input',name:'Your References'},
-      {label:'Extract',name:'Style Qualities'},
-      {label:'Weight',name:'IPAdapter Control'},
+      {label:'Load',name:'IPAdapter Stack'},
+      {label:'Weight',name:'Each Reference'},
       {label:'Blend',name:'Cross-Reference'},
       {label:'Output',name:'Styled Output'}
     ],
     bullets:[
-      'Combine style qualities from multiple sources simultaneously',
-      'Control how much influence each reference has on the output',
-      'Create entirely new visual styles from existing references',
-      'Output: custom-styled visuals that are uniquely yours'
+      'Stack multiple IPAdapter references and weight each one independently',
+      'Combine a material reference, a lighting reference, and an atmosphere reference in one generation',
+      'Create visual directions that no single reference image contains',
+      'Output: custom-styled renders built from your own curated reference set'
+    ]
+  },
+  {
+    tag:'M8', name:'Floor plan visualisation',
+    input:'Floor plan drawing',
+    inputDesc:'Top-down floor plan — hand-drawn, CAD, or Revit export. The output projection matches your input.',
+    process:[
+      {label:'Input',name:'Your Floor Plan'},
+      {label:'Detect',name:'MLSD Line Logic'},
+      {label:'Apply',name:'Global Materials'},
+      {label:'Inpaint',name:'Per-Room Zones'},
+      {label:'Output',name:'Visualised Plan'}
+    ],
+    bullets:[
+      'ControlNet MLSD reads straight-line plan geometry — built for floor plans, not sketches',
+      'Stage 1: global material pass establishes the overall read',
+      'Stage 2: inpaint each room zone independently for per-room material control',
+      'Output: a visualised floor plan with differentiated materials per space'
+    ]
+  },
+  {
+    tag:'M9', name:'Upscaling',
+    input:'Any render from a previous module',
+    inputDesc:'Take any output from M2 through M8 and push it to print-ready resolution.',
+    process:[
+      {label:'Input',name:'Your Render'},
+      {label:'Load',name:'Upscale Model'},
+      {label:'Tile',name:'Ultimate SD Upscale'},
+      {label:'Reconstruct',name:'Detail Pass'},
+      {label:'Output',name:'High-Res File'}
+    ],
+    bullets:[
+      'Ultimate SD Upscale tiles your render and reconstructs detail — not just a resize',
+      'Take any workshop output to 4K or A1 print resolution',
+      'Denoise controls how much new detail gets added during the upscale pass',
+      'Output: a print-ready or presentation-ready file from any render in the workshop'
     ]
   }
 ];
