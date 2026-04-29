@@ -520,6 +520,20 @@ h2 em{font-style:italic;font-weight:300;color:var(--gold)}
 .parrow-wire{stroke:var(--gold);stroke-width:1.2;fill:none;opacity:.5}
 .parrow-dot{fill:var(--gold);opacity:.7}
 
+.exp-output-gallery{
+  display:flex;gap:8px;margin-top:20px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+}
+.exp-output-gallery::-webkit-scrollbar{height:2px}
+.exp-output-gallery::-webkit-scrollbar-thumb{background:var(--gold-wire)}
+.exp-output-img{
+  flex-shrink:0;width:200px;height:140px;
+  object-fit:cover;border-radius:2px;
+  border:1px solid rgba(239,159,39,.12);
+  scroll-snap-align:start;
+  transition:border-color .2s;
+}
+.exp-output-img:hover{border-color:var(--gold)}
 .exp-input-img{
   display:block;width:100%;margin-top:20px;
   border-radius:2px;border:1px solid rgba(239,159,39,.12);
@@ -1357,7 +1371,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M2', name:'Sketch-to-render', processImg:'workflow-m2.png', inputImg:'input-m2.png',
+    tag:'M2', name:'Sketch-to-render', processImg:'workflow-m2.png', inputImg:'input-m2.png', outputImgs:['output-m2-1.png','output-m2-2.png','output-m2-3.png','output-m2-4.png','output-m2-5.png'],
     input:'Exterior perspective drawing',
     inputDesc:'Hand-drawn sketch, SketchUp export, or CAD linework — any exterior perspective at any stage of design.',
     process:[
@@ -1393,7 +1407,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M4', name:'Style transfer', processImg:'workflow-m4.png', inputImg:'input-m4a.png', inputImg2:'input-m4b.png',
+    tag:'M4', name:'Style transfer', processImg:'workflow-m4.png', inputImg:'input-m4a.png', inputImg2:'input-m4b.png', outputImgs:['output-m4-1.png','output-m4-2.png','output-m4-3.png','output-m4-4.png','output-m4-5.png','output-m4-6.png','output-m4-7.png','output-m4-8.png','output-m4-9.png','output-m4-10.png','output-m4-11.png'],
     input:'Your render + a reference photograph',
     inputDesc:'A render from M2 or M3 as the base, and any photograph — interior, exterior, or atmospheric — as the style reference.',
     process:[
@@ -1411,7 +1425,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M5', name:'Site insertion & inpainting', processImg:'workflow-m5.png', inputImg:'input-m5.png',
+    tag:'M5', name:'Site insertion & inpainting', processImg:'workflow-m5.png', inputImg:'input-m5.png', outputImgs:['output-m5-1.png','output-m5-2.png'],
     input:'Site photograph + your design sketch',
     inputDesc:'Composite your sketch or SketchUp export onto a site photograph before bringing it into ComfyUI — the combined image is your input.',
     process:[
@@ -1447,7 +1461,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M7', name:'Style & reference cross-manipulation', processImg:'workflow-m7.png', inputImg:'input-m7a.jpg', inputImg2:'input-m7b.jpg',
+    tag:'M7', name:'Style & reference cross-manipulation', processImg:'workflow-m7.png', inputImg:'input-m7a.jpg', inputImg2:'input-m7b.jpg', outputImgs:['output-m7.png'],
     input:'Multiple reference images',
     inputDesc:'Any combination — renders, photographs, artwork, material samples. Two or more sources fed simultaneously into IPAdapter.',
     process:[
@@ -1529,10 +1543,7 @@ function buildModules(){
             <ul class="exp-bullets">
               ${m.bullets.map(b=>`<li>${b}</li>`).join('')}
             </ul>
-            <div class="exp-img-placeholder">
-              <span>Output image</span>
-              <span>Add when ready</span>
-            </div>
+            ${m.outputImgs && m.outputImgs.length ? `<div class="exp-output-gallery">${m.outputImgs.map(img=>`<img class="exp-output-img" src="${img}" alt="${m.name} output">`).join('')}</div>` : `<div class="exp-img-placeholder"><span>Output image</span><span>Add when ready</span></div>`}
           </div>
         </div>
       </div>`;
