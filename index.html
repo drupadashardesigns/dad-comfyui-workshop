@@ -520,6 +520,12 @@ h2 em{font-style:italic;font-weight:300;color:var(--gold)}
 .parrow-wire{stroke:var(--gold);stroke-width:1.2;fill:none;opacity:.5}
 .parrow-dot{fill:var(--gold);opacity:.7}
 
+.exp-process-img{
+  display:block;width:100%;margin-top:24px;
+  border-radius:2px;border:1px solid rgba(239,159,39,.12);
+  object-fit:cover;
+}
+
 /* Expand col 3 — bullets + placeholder */
 .exp-info{padding:36px 32px;background:var(--ink2)}
 .exp-bullets{
@@ -1324,7 +1330,7 @@ section + section{border-top:1px solid rgba(239,159,39,.06)}
 /* ── MODULE DATA ──────────────────────────── */
 const MODS = [
   {
-    tag:'M1', name:'Node orientation & canvas logic',
+    tag:'M1', name:'Node orientation & canvas logic', processImg:'workflow-m1.png',
     input:'No drawing required',
     inputDesc:'This module requires nothing from you — just your attention. You will leave knowing exactly what every node does and why.',
     process:[
@@ -1342,7 +1348,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M2', name:'Sketch-to-render',
+    tag:'M2', name:'Sketch-to-render', processImg:'workflow-m2.png',
     input:'Exterior perspective drawing',
     inputDesc:'Hand-drawn sketch, SketchUp export, or CAD linework — any exterior perspective at any stage of design.',
     process:[
@@ -1360,7 +1366,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M3', name:'Batch generation',
+    tag:'M3', name:'Batch generation', processImg:'workflow-m2.png',
     input:'Any exterior perspective drawing',
     inputDesc:'The same drawing you used in M2 — or any sketch. One input, multiple outputs.',
     process:[
@@ -1378,7 +1384,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M4', name:'Style transfer',
+    tag:'M4', name:'Style transfer', processImg:'workflow-m4.png',
     input:'Your render + a reference photograph',
     inputDesc:'A render from M2 or M3 as the base, and any photograph — interior, exterior, or atmospheric — as the style reference.',
     process:[
@@ -1396,7 +1402,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M5', name:'Site insertion & inpainting',
+    tag:'M5', name:'Site insertion & inpainting', processImg:'workflow-m5.png',
     input:'Site photograph + your design sketch',
     inputDesc:'Composite your sketch or SketchUp export onto a site photograph before bringing it into ComfyUI — the combined image is your input.',
     process:[
@@ -1414,7 +1420,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M6', name:'Massing study',
+    tag:'M6', name:'Massing study', processImg:'workflow-m6.png',
     input:'Rough massing sketch or physical model photo',
     inputDesc:'An early-stage massing — hand-drawn, diagrammatic, or a photograph of a physical model. Precision not required.',
     process:[
@@ -1432,7 +1438,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M7', name:'Style & reference cross-manipulation',
+    tag:'M7', name:'Style & reference cross-manipulation', processImg:'workflow-m7.png',
     input:'Multiple reference images',
     inputDesc:'Any combination — renders, photographs, artwork, material samples. Two or more sources fed simultaneously into IPAdapter.',
     process:[
@@ -1450,7 +1456,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M8', name:'Upscaling',
+    tag:'M8', name:'Upscaling', processImg:'workflow-m8.png',
     input:'Any render from a previous module',
     inputDesc:'Take any output from M2 through M7 and push it to print-ready resolution.',
 
@@ -1506,6 +1512,7 @@ function buildModules(){
               `).join('')}
             </div>
             </div>
+            ${m.processImg ? `<img class="exp-process-img" src="${m.processImg}" alt="${m.name} workflow">` : ''}
           </div>
           <div class="exp-info">
             <div class="exp-col-title">What you'll achieve</div>
