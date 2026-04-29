@@ -520,6 +520,15 @@ h2 em{font-style:italic;font-weight:300;color:var(--gold)}
 .parrow-wire{stroke:var(--gold);stroke-width:1.2;fill:none;opacity:.5}
 .parrow-dot{fill:var(--gold);opacity:.7}
 
+.exp-input-img{
+  display:block;width:100%;margin-top:20px;
+  border-radius:2px;border:1px solid rgba(239,159,39,.12);
+  object-fit:cover;
+}
+.exp-input-pair{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px;
+}
+.exp-input-pair .exp-input-img{margin-top:0}
 .exp-process-img{
   display:block;width:100%;margin-top:24px;
   border-radius:2px;border:1px solid rgba(239,159,39,.12);
@@ -1348,7 +1357,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M2', name:'Sketch-to-render', processImg:'workflow-m2.png',
+    tag:'M2', name:'Sketch-to-render', processImg:'workflow-m2.png', inputImg:'input-m2.png',
     input:'Exterior perspective drawing',
     inputDesc:'Hand-drawn sketch, SketchUp export, or CAD linework — any exterior perspective at any stage of design.',
     process:[
@@ -1366,7 +1375,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M3', name:'Batch generation', processImg:'workflow-m2.png',
+    tag:'M3', name:'Batch generation', processImg:'workflow-m2.png', inputImg:'input-m2.png',
     input:'Any exterior perspective drawing',
     inputDesc:'The same drawing you used in M2 — or any sketch. One input, multiple outputs.',
     process:[
@@ -1384,7 +1393,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M4', name:'Style transfer', processImg:'workflow-m4.png',
+    tag:'M4', name:'Style transfer', processImg:'workflow-m4.png', inputImg:'input-m4a.png', inputImg2:'input-m4b.png',
     input:'Your render + a reference photograph',
     inputDesc:'A render from M2 or M3 as the base, and any photograph — interior, exterior, or atmospheric — as the style reference.',
     process:[
@@ -1402,7 +1411,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M5', name:'Site insertion & inpainting', processImg:'workflow-m5.png',
+    tag:'M5', name:'Site insertion & inpainting', processImg:'workflow-m5.png', inputImg:'input-m5.png',
     input:'Site photograph + your design sketch',
     inputDesc:'Composite your sketch or SketchUp export onto a site photograph before bringing it into ComfyUI — the combined image is your input.',
     process:[
@@ -1496,6 +1505,7 @@ function buildModules(){
             <div class="exp-col-title">Input</div>
             <div class="exp-input-type">${m.input}</div>
             <div class="exp-input-desc">${m.inputDesc}</div>
+            ${m.inputImg2 ? `<div class="exp-input-pair"><img class="exp-input-img" src="${m.inputImg}" alt="${m.name} input"><img class="exp-input-img" src="${m.inputImg2}" alt="${m.name} reference"></div>` : m.inputImg ? `<img class="exp-input-img" src="${m.inputImg}" alt="${m.name} input">` : ''}
           </div>
           <div class="exp-process">
             <div class="exp-col-title">Process</div>
