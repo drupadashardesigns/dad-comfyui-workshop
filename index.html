@@ -1420,7 +1420,7 @@ section + section{border-top:1px solid rgba(239,159,39,.06)}
 /* ── MODULE DATA ──────────────────────────── */
 const MODS = [
   {
-    tag:'M1', name:'Node orientation & canvas logic', processImg:'workflow-m1.png',
+    tag:'M1', name:'Node orientation & canvas logic', processImg:'workflow-m1.png', outputImgs:[],
     input:'No drawing required',
     inputDesc:'This module requires nothing from you — just your attention. You will leave knowing exactly what every node does and why.',
     process:[
@@ -1546,7 +1546,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M8', name:'Upscaling', processImg:'workflow-m8.png', inputImg:'input-m8.png',
+    tag:'M8', name:'Upscaling', processImg:'workflow-m8.png', inputImg:'input-m8.png', outputImgs:['output-m8.png'],
     input:'Any render from a previous module',
     inputDesc:'Take any output from M2 through M7 and push it to print-ready resolution.',
 
@@ -1610,7 +1610,7 @@ function buildModules(){
             <ul class="exp-bullets">
               ${m.bullets.map(b=>`<li>${b}</li>`).join('')}
             </ul>
-            ${m.outputImgs && m.outputImgs.length ? `<div class="exp-output-gallery">${m.outputImgs.map(img=>`<img class="exp-output-img" src="${img}" alt="${m.name} output">`).join('')}</div>${m.outputCaption ? `<p class="exp-output-caption">${m.outputCaption}</p>` : ''}` : `<div class="exp-img-placeholder"><span>Output image</span><span>Add when ready</span></div>`}
+            ${m.outputImgs === undefined ? `<div class="exp-img-placeholder"><span>Output image</span><span>Add when ready</span></div>` : m.outputImgs.length ? `<div class="exp-output-gallery">${m.outputImgs.map(img=>`<img class="exp-output-img" src="${img}" alt="${m.name} output">`).join('')}</div>${m.outputCaption ? `<p class="exp-output-caption">${m.outputCaption}</p>` : ''}` : ''}
           </div>
         </div>
       </div>`;
