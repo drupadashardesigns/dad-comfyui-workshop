@@ -1546,7 +1546,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M8', name:'Upscaling', processImg:'workflow-m8.png', inputImg:'input-m8.png', outputImgs:['output-m8.png'],
+    tag:'M8', name:'Upscaling', processImg:'workflow-m8.png', inputImg:'input-m8.png', blurInput:true, outputImgs:['output-m8.png'],
     input:'Any render from a previous module',
     inputDesc:'Take any output from M2 through M7 and push it to print-ready resolution.',
 
@@ -1586,7 +1586,7 @@ function buildModules(){
             <div class="exp-col-title">Input</div>
             <div class="exp-input-type">${m.input}</div>
             <div class="exp-input-desc">${m.inputDesc}</div>
-            ${m.inputImg2 ? `<div class="exp-input-pair"><img class="exp-input-img" src="${m.inputImg}" alt="${m.name} input"><img class="exp-input-img" src="${m.inputImg2}" alt="${m.name} reference"></div>` : m.inputImg ? `<img class="exp-input-img" src="${m.inputImg}" alt="${m.name} input">` : ''}
+            ${m.inputImg2 ? `<div class="exp-input-pair"><img class="exp-input-img" src="${m.inputImg}" alt="${m.name} input"><img class="exp-input-img" src="${m.inputImg2}" alt="${m.name} reference"></div>` : m.inputImg ? `<img class="exp-input-img"${m.blurInput ? ' style="filter:blur(5px);transform:scale(1.05)"' : ''} src="${m.inputImg}" alt="${m.name} input">` : ''}
           </div>
           <div class="exp-process">
             <div class="exp-col-title">Process</div>
