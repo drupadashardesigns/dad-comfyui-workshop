@@ -525,8 +525,8 @@ h2 em{font-style:italic;font-weight:300;color:var(--gold)}
   gap:8px;margin-top:20px;
 }
 .exp-output-img{
-  width:100%;height:160px;
-  object-fit:cover;border-radius:2px;
+  width:100%;height:auto;
+  object-fit:contain;border-radius:2px;
   border:1px solid rgba(239,159,39,.12);
   transition:border-color .2s;display:block;
 }
@@ -1462,7 +1462,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M7', name:'Style & reference cross-manipulation', processImg:'workflow-m7.png', inputImg:'input-m7a.jpg', inputImg2:'input-m7b.jpg', outputImgs:['output-m7.png'],
+    tag:'M7', name:'Style & reference cross-manipulation', processImg:'workflow-m7.png', inputImg:'input-m7a.png', inputImg2:'input-m7b.jpg', outputImgs:['output-m7.png'],
     input:'Multiple reference images',
     inputDesc:'Any combination — renders, photographs, artwork, material samples. Two or more sources fed simultaneously into IPAdapter.',
     process:[
