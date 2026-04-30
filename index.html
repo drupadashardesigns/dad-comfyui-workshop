@@ -147,7 +147,40 @@ nav.solid{background:rgba(14,12,10,.92);backdrop-filter:blur(20px)}
   background:var(--ink);
   padding:48px 52px 56px;
   flex-shrink:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
 }
+.hero-left{}
+.hero-right{padding-top:8px}
+
+/* ── Student Monologue ── */
+.sm-scene{display:flex;align-items:flex-start;gap:20px;width:100%}
+.sm-figure{flex-shrink:0;padding-top:4px}
+.sm-thoughts{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.sm-thought{
+  background:#161310;border:0.5px solid #3A342E;
+  border-radius:10px;border-bottom-left-radius:2px;
+  padding:12px 16px;position:relative;
+}
+.sm-tail{
+  position:absolute;bottom:-5px;left:-5px;
+  width:5px;height:5px;border-radius:50%;background:#3A342E;
+}
+.sm-thought p{
+  margin:0;font-family:var(--f2);font-weight:300;
+  font-size:13px;line-height:1.75;color:var(--cream);
+}
+.sm-em{
+  font-family:var(--f1);font-style:italic;font-weight:300;color:var(--gold);
+}
+.sm-turn{
+  margin-top:28px;padding-top:20px;
+  border-top:0.5px solid #1E1915;
+}
+.sm-turn p{
+  margin:0;font-family:var(--f1);font-weight:300;
+  font-size:17px;line-height:1.55;color:var(--cream);
+}
+.sm-turn-em{color:var(--gold);font-style:italic}
 .hero-kicker{
   display:inline-flex;align-items:center;gap:10px;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
@@ -724,7 +757,7 @@ footer{
 ════════════════════════════════════════════ */
 @media(max-width:1100px){
   nav{padding:14px 24px}
-  .hero-content{position:relative;z-index:2;padding:32px 24px 44px}
+  .hero-content{position:relative;z-index:2;padding:32px 24px 44px;grid-template-columns:1fr;gap:40px}
   .s-wrap,.out-head,.out-grid,.mod-head,.mod-list,.reg-grid,.faq-wrap{padding-left:24px;padding-right:24px}
   .sec-node{margin-left:24px!important;margin-right:24px!important}
   .sec-node-header{padding:7px 28px}
@@ -1032,32 +1065,65 @@ section + section{border-top:1px solid rgba(239,159,39,.06)}
 
   <!-- CONTENT ZONE — solid dark, completely below panels -->
   <div class="hero-content">
-    <div class="sec-node" style="margin:0 0 32px;display:inline-flex;align-items:center;min-width:280px">
-      <div class="sec-node-header" style="width:100%;border-radius:3px">
-      <div class="port-in-wrap">
-        <div class="port-hit"></div>
-        <div class="port-tooltip">input</div>
+    <!-- LEFT COLUMN -->
+    <div class="hero-left">
+      <div class="sec-node" style="margin:0 0 32px;display:inline-flex;align-items:center;min-width:280px">
+        <div class="sec-node-header" style="width:100%;border-radius:3px">
+        <div class="port-in-wrap">
+          <div class="port-hit"></div>
+          <div class="port-tooltip">input</div>
+        </div>
+        <span class="sec-node-type">Source</span>
+        <span class="sec-node-id">#001 · entry point</span>
+        <div class="port-out-wrap">
+          <div class="port-hit"></div>
+          <div class="port-tooltip">output</div>
+        </div>
       </div>
-      <span class="sec-node-type">Source</span>
-      <span class="sec-node-id">#001 · entry point</span>
-      <div class="port-out-wrap">
-        <div class="port-hit"></div>
-        <div class="port-tooltip">output</div>
+      </div>
+      <div class="hero-kicker"><span class="hero-kicker-line"></span>Project-based · Nagpur · May 2026</div>
+      <h1>Stop describing<br>your vision.<br><em>Show it.</em></h1>
+      <p class="hero-sub">3 sessions. 8 workflows. Built with your own drawings. Click any panel above to explore that workflow.</p>
+      <div class="hero-ctas">
+        <button class="cta-primary" onclick="scrollToId('register')">Reserve your spot</button>
+        <button class="cta-secondary" onclick="scrollToId('modules')">Explore all 8 workflows ↓</button>
+      </div>
+      <div class="hero-meta">
+        <div class="hm"><div class="hml">Venue</div><div class="hmv">Auditorium, I.D.E.A.S</div></div>
+        <div class="hm"><div class="hml">Date</div><div class="hmv">May 2026</div></div>
+        <div class="hm"><div class="hml">Format</div><div class="hmv">3 × 4-hour sessions</div></div>
+        <div class="hm"><div class="hml">Coding needed</div><div class="hmv">Zero</div></div>
       </div>
     </div>
-    </div>
-    <div class="hero-kicker"><span class="hero-kicker-line"></span>Project-based · Nagpur · May 2026</div>
-    <h1>Stop describing<br>your vision.<br><em>Show it.</em></h1>
-    <p class="hero-sub">3 sessions. 8 workflows. Built with your own drawings. Click any panel above to explore that workflow.</p>
-    <div class="hero-ctas">
-      <button class="cta-primary" onclick="scrollToId('register')">Reserve your spot</button>
-      <button class="cta-secondary" onclick="scrollToId('modules')">Explore all 8 workflows ↓</button>
-    </div>
-    <div class="hero-meta">
-      <div class="hm"><div class="hml">Venue</div><div class="hmv">Auditorium, I.D.E.A.S</div></div>
-      <div class="hm"><div class="hml">Date</div><div class="hmv">May 2026</div></div>
-      <div class="hm"><div class="hml">Format</div><div class="hmv">3 × 4-hour sessions</div></div>
-      <div class="hm"><div class="hml">Coding needed</div><div class="hmv">Zero</div></div>
+
+    <!-- RIGHT COLUMN — Student Monologue -->
+    <div class="hero-right">
+      <div class="sm-scene">
+        <div class="sm-figure">
+          <svg width="60" height="150" viewBox="0 0 60 150" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0,150) scale(0.019608,-0.012701)" fill="#A89A88" stroke="none">
+              <path d="M414 11596 c-55 -25 -72 -102 -94 -422 -11 -164 -24 -277 -45 -389 -15 -76 -24 -167 -45 -445 -5 -69 -14 -141 -20 -160 -15 -52 -12 -128 6 -160 10 -17 43 -40 83 -59 120 -58 189 -96 208 -112 10 -9 41 -29 68 -43 28 -15 79 -45 115 -66 36 -22 92 -54 124 -70 33 -16 66 -36 75 -43 16 -14 64 -41 209 -119 40 -22 91 -57 113 -78 l41 -39 -6 -73 c-2 -40 -10 -242 -16 -448 -5 -206 -17 -429 -25 -495 -17 -132 -19 -310 -4 -395 8 -50 16 -237 33 -730 14 -385 25 -598 35 -635 6 -22 11 -101 10 -175 -2 -214 37 -729 71 -945 11 -66 24 -183 30 -260 16 -200 29 -314 50 -440 10 -60 24 -184 30 -275 6 -91 22 -241 35 -335 23 -159 31 -235 55 -508 5 -59 18 -163 29 -230 12 -67 27 -214 36 -327 8 -113 22 -244 30 -293 11 -59 13 -93 6 -105 -11 -21 -107 -42 -190 -42 -42 0 -57 -5 -76 -25 -21 -20 -25 -33 -25 -87 0 -80 26 -140 68 -157 23 -10 48 -10 106 -2 43 6 105 11 139 11 106 1 296 27 323 45 38 24 57 77 45 123 -5 20 -13 93 -16 162 -4 69 -16 181 -27 250 -31 193 -37 243 -48 420 -6 91 -17 197 -25 235 -14 70 -39 296 -51 455 -3 47 -17 157 -31 245 -23 150 -25 197 -34 735 -5 316 -8 655 -7 753 3 163 5 180 22 193 28 20 73 18 84 -3 5 -10 12 -70 16 -133 3 -63 13 -151 21 -195 9 -44 20 -127 25 -185 33 -368 61 -634 73 -695 8 -38 20 -160 27 -270 6 -110 23 -276 36 -370 14 -93 31 -255 40 -360 8 -104 21 -242 29 -305 31 -239 36 -290 50 -470 22 -274 33 -379 41 -392 4 -6 10 -48 14 -92 10 -100 24 -157 49 -187 18 -23 26 -24 250 -33 225 -9 233 -9 259 11 25 19 27 26 30 106 2 76 0 88 -20 111 -18 21 -37 29 -88 36 -36 5 -84 10 -108 10 -69 0 -89 27 -96 136 -4 49 -12 134 -18 189 -6 55 -12 134 -13 177 -2 42 -7 82 -11 90 -9 13 -12 57 -33 478 -6 129 -16 260 -23 290 -12 61 -22 171 -38 430 -21 360 -32 497 -42 560 -12 75 -21 178 -43 530 -28 440 -31 484 -44 529 -10 34 -10 83 -2 218 6 95 11 234 11 307 0 73 7 177 15 232 17 114 19 225 5 321 -34 245 -44 324 -60 521 -16 184 1 239 36 114 8 -31 24 -84 35 -117 46 -141 57 -238 58 -495 1 -135 -1 -371 -5 -524 -3 -153 -3 -294 1 -312 8 -47 40 -64 127 -71 63 -5 76 -3 98 15 l25 20 8 304 c21 858 20 895 -33 1140 -10 48 -28 141 -40 205 -11 65 -27 147 -34 183 -30 135 -47 227 -56 300 -5 42 -20 112 -34 155 -14 44 -30 127 -36 186 -5 58 -19 136 -31 175 -11 38 -30 139 -43 225 -37 242 -58 276 -321 543 -72 74 -129 145 -154 193 -29 57 -29 158 0 244 16 47 22 89 22 159 1 90 -1 99 -35 166 -38 74 -98 137 -154 160 -19 8 -67 14 -109 14 l-76 0 -51 -47 c-97 -91 -130 -207 -93 -330 15 -51 116 -215 148 -242 20 -16 23 -79 4 -87 -14 -5 -109 21 -282 75 -242 76 -296 92 -365 107 -41 9 -93 25 -114 36 -21 11 -66 24 -99 28 -33 5 -66 15 -73 22 -9 10 -10 93 -3 388 5 206 13 409 19 450 6 41 10 127 10 190 0 70 6 137 15 170 39 144 -6 223 -133 236 -29 3 -59 -1 -78 -10z"/>
+            </g>
+          </svg>
+        </div>
+        <div class="sm-thoughts">
+          <div class="sm-thought">
+            <div class="sm-tail"></div>
+            <p>I changed the material of my design from brick to <em class="sm-em">metal.</em> Now I have to redo the whole model. <em class="sm-em">I'm not doing that.</em></p>
+          </div>
+          <div class="sm-thought">
+            <div class="sm-tail"></div>
+            <p>My prof wants to see how it sits on site. I have the sketch. I don't have three days to make a model of my site and my design and show it. <em class="sm-em">So I'll just explain it verbally and hope for the best.</em></p>
+          </div>
+          <div class="sm-thought">
+            <div class="sm-tail"></div>
+            <p>I had five massing ideas this morning. By the time I finish modelling one, <em class="sm-em">I've forgotten why I liked the other four.</em></p>
+          </div>
+        </div>
+      </div>
+      <div class="sm-turn">
+        <p>You already have the ideas.<br>The execution process is unnecessarily long.<br><em class="sm-turn-em">We're about to change that.</em></p>
+      </div>
     </div>
   </div>
 
