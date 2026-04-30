@@ -534,6 +534,10 @@ h2 em{font-style:italic;font-weight:300;color:var(--gold)}
   transition:border-color .2s;
 }
 .exp-output-img:hover{border-color:var(--gold)}
+.exp-output-caption{
+  margin-top:12px;font-size:11px;color:var(--mud);
+  line-height:1.6;font-style:italic;
+}
 .exp-input-img{
   display:block;width:100%;margin-top:20px;
   border-radius:2px;border:1px solid rgba(239,159,39,.12);
@@ -1389,7 +1393,7 @@ const MODS = [
     ]
   },
   {
-    tag:'M3', name:'Batch generation', processImg:'workflow-m2.png', inputImg:'input-m2.png',
+    tag:'M3', name:'Batch generation', processImg:'workflow-m2.png', inputImg:'input-m2.png', outputImgs:['output-m3-1.png','output-m3-2.png','output-m3-3.png','output-m3-4.png'], outputCaption:'Same drawing. Same prompt. CFG scaled from 4 → 10 across four runs — each step shifts how strictly the AI follows the prompt versus interpreting freely.',
     input:'Any exterior perspective drawing',
     inputDesc:'The same drawing you used in M2 — or any sketch. One input, multiple outputs.',
     process:[
@@ -1543,7 +1547,7 @@ function buildModules(){
             <ul class="exp-bullets">
               ${m.bullets.map(b=>`<li>${b}</li>`).join('')}
             </ul>
-            ${m.outputImgs && m.outputImgs.length ? `<div class="exp-output-gallery">${m.outputImgs.map(img=>`<img class="exp-output-img" src="${img}" alt="${m.name} output">`).join('')}</div>` : `<div class="exp-img-placeholder"><span>Output image</span><span>Add when ready</span></div>`}
+            ${m.outputImgs && m.outputImgs.length ? `<div class="exp-output-gallery">${m.outputImgs.map(img=>`<img class="exp-output-img" src="${img}" alt="${m.name} output">`).join('')}</div>${m.outputCaption ? `<p class="exp-output-caption">${m.outputCaption}</p>` : ''}` : `<div class="exp-img-placeholder"><span>Output image</span><span>Add when ready</span></div>`}
           </div>
         </div>
       </div>`;
